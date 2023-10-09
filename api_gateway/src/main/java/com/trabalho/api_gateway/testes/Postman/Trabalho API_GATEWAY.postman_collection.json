@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "fba6c995-046d-4d96-8e27-96a8af2b781c",
+		"name": "Trabalho API_GATEWAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27736008"
+	},
+	"item": [
+		{
+			"name": "Nova OS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numero\":\"5\",\r\n  \"descricao\": \"OS-Expedição\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/os"
+			},
+			"response": []
+		},
+		{
+			"name": "Busca OS pelo Numero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/os/5"
+			},
+			"response": []
+		},
+		{
+			"name": "Busca todas OS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/os"
+			},
+			"response": []
+		},
+		{
+			"name": "Novo Equipamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numero\":\"16\",\r\n    \"indice\":\"Imp6\",\r\n    \"descricao\":\"Impressora\",\r\n    \"problema\":\"Não imprime\"\r\n  \r\n}\r\n  \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/os/5/equipamento"
+			},
+			"response": []
+		},
+		{
+			"name": "Busca Equipamento Pelo Numero e Indice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/os/12/equipamento/Xerox1"
+			},
+			"response": []
+		},
+		{
+			"name": "Busca Equipamento Pelo Numero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/os/10/equipamento"
+			},
+			"response": []
+		},
+		{
+			"name": "Busca Equipamento Pela Descrição",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/os/equipamento?descricao=Impressora",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"os",
+						"equipamento"
+					],
+					"query": [
+						{
+							"key": "descricao",
+							"value": "Impressora"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

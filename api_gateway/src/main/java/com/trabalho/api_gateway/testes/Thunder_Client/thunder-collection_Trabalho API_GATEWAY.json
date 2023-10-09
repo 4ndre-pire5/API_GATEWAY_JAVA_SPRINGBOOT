@@ -1,0 +1,123 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "API_GATEWAY",
+    "dateExported": "2023-10-09T17:52:37.019Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "703b21e9-87ea-4f8a-ae97-1e97e0a4c6e8",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Nova OS",
+            "url": "http://localhost:8080/api/v1/os",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-10-05T17:03:40.927Z",
+            "modified": "2023-10-09T12:57:07.060Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"numero\": 5,\n  \"descricao\": \"OS-Expedição\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b6a169fd-d135-490e-9804-90969277aaaa",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Find All Os",
+            "url": "http://localhost:8080/api/v1/os",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-10-05T12:59:45.448Z",
+            "modified": "2023-10-05T12:59:45.448Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "08ec8584-b225-48c9-bcae-ddc663a738cd",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Find OS by Numero",
+            "url": "http://localhost:8080/api/v1/os/3",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-10-05T14:17:06.676Z",
+            "modified": "2023-10-09T15:55:37.135Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "14710e07-01ee-4f3f-9741-132f7e3217da",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Novo Equipamento",
+            "url": "http://localhost:8080/api/v1/os/5/equipamento",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-10-05T18:13:51.554Z",
+            "modified": "2023-10-09T12:58:24.824Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"indice\": \"Etiq2\",\n  \"numero\":23,\n  \"descricao\": \"Etiquetadora\",\n  \"problema\": \"Display quebrado\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f8e45334-bc61-47de-853e-a25b10e31dc6",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Find Equipamento By Numero And Indice",
+            "url": "http://localhost:8080/api/v1/os/12/equipamento/Xerox1",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-10-09T17:08:19.338Z",
+            "modified": "2023-10-09T17:42:49.758Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "10f26eb4-4aac-4785-a16d-43f1785f8be1",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Find Equipamento By Numero",
+            "url": "http://localhost:8080/api/v1/os/10/equipamento",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-10-09T17:31:46.381Z",
+            "modified": "2023-10-09T17:33:12.381Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5fa9140b-b23e-45f0-900b-79183b3920ef",
+            "colId": "320f438a-27bf-439e-94fd-9cf23180912c",
+            "containerId": "",
+            "name": "Find Equipamento By Descricao",
+            "url": "http://localhost:8080/api/v1/os/equipamento?descricao=Impressora",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-10-09T17:50:32.096Z",
+            "modified": "2023-10-09T17:52:20.042Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "descricao",
+                    "value": "Impressora",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
