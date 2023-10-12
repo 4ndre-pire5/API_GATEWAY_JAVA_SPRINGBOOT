@@ -7,104 +7,286 @@
 	},
 	"item": [
 		{
-			"name": "Nova OS",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"numero\":\"50\",\r\n  \"descricao\": \"OS_Escritorio\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+			"name": "KONG",
+			"item": [
+				{
+					"name": "Busca Serviço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8001/services"
+					},
+					"response": []
 				},
-				"url": "http://localhost:8080/api/v1/os"
-			},
-			"response": []
-		},
-		{
-			"name": "Busca OS pelo Numero",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/os/40"
-			},
-			"response": []
-		},
-		{
-			"name": "Busca todas OS",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/os"
-			},
-			"response": []
-		},
-		{
-			"name": "Novo Equipamento",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"numero\":\"160\",\r\n    \"indice\":\"Mntr23\",\r\n    \"descricao\":\"Monitor\",\r\n    \"problema\":\"Imagem vermelha\"\r\n}\r\n  \r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "http://localhost:8080/api/v1/os/50/equipamento"
-			},
-			"response": []
-		},
-		{
-			"name": "Busca Equipamento Pelo Numero e Indice",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/os/140/equipamento/Scan1"
-			},
-			"response": []
-		},
-		{
-			"name": "Busca Equipamento Pelo Numero",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/os/130/equipamento"
-			},
-			"response": []
-		},
-		{
-			"name": "Busca Equipamento Pela Descrição",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/os/equipamento?descricao=Impressora",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"os",
-						"equipamento"
-					],
-					"query": [
+				{
+					"name": "Novo Serviço",
+					"event": [
 						{
-							"key": "descricao",
-							"value": "Impressora"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Salvar variaveis globais\", function(){\r",
+									"    // Parse the service ID from the response\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"    pm.globals.set('service-id', jsonData.id);\r",
+									"    pm.globals.set('service-name', jsonData.name);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"OrdemServico\",\r\n  \"url\": \"http://localhost/api/v1/os\",\r\n  \"enabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8001/services"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar rota",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8001/routes"
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Rota",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"OrdemServico\",\r\n    \"protocols\": [\"http\", \"https\"],\r\n    \"methods\": [\"GET\", \"POST\", \"PATCH\", \"DELETE\"],\r\n    \"hosts\": [\"localhost\"],\r\n    \"paths\": [\"/v1/gateway/os\"],\r\n    \"https_redirect_status_code\": 426,\r\n    \"regex_priority\": 0,\r\n    \"strip_path\": true,\r\n    \"path_handling\": \"v1\",\r\n    \"preserve_host\": false,\r\n    \"request_buffering\": true,\r\n    \"response_buffering\": true,\r\n    \"tags\": [\"user-level\", \"low-priority\"],\r\n    \"service\": {\"id\": \"{{service-id}}\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8001/routes"
+					},
+					"response": []
+				},
+				{
+					"name": "Nova OS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numero\":\"50\",\r\n  \"descricao\": \"OS_Escritorio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/v1/gateway/os"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca OS pelo Numero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/v1/gateway/os/40"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todas OS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/v1/gateway/os"
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"160\",\r\n    \"indice\":\"Mntr23\",\r\n    \"descricao\":\"Monitor\",\r\n    \"problema\":\"Imagem vermelha\"\r\n}\r\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/v1/gateway/os/50/equipamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pelo Numero e Indice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/v1/gateway/os/140/equipamento/Scan1"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pelo Numero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/v1/gateway/os/130/equipamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pela Descrição",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/gateway/os/equipamento?descricao=Impressora",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"gateway",
+								"os",
+								"equipamento"
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "Impressora"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "Nova OS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numero\":\"50\",\r\n  \"descricao\": \"OS_Escritorio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/v1/os"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca OS pelo Numero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/os/40"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todas OS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/os"
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"160\",\r\n    \"indice\":\"Mntr23\",\r\n    \"descricao\":\"Monitor\",\r\n    \"problema\":\"Imagem vermelha\"\r\n}\r\n  \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/v1/os/50/equipamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pelo Numero e Indice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/os/140/equipamento/Scan1"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pelo Numero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/os/130/equipamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Equipamento Pela Descrição",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/os/equipamento?descricao=Impressora",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"os",
+								"equipamento"
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "Impressora"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
