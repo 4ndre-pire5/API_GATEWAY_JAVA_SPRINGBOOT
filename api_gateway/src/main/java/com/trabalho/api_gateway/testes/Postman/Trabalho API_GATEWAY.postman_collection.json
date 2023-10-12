@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"numero\":\"5\",\r\n  \"descricao\": \"OS-Expedição\"\r\n}",
+					"raw": "{\r\n  \"numero\":\"50\",\r\n  \"descricao\": \"OS_Escritorio\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -29,7 +29,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/os/5"
+				"url": "http://localhost:8080/api/v1/os/40"
 			},
 			"response": []
 		},
@@ -49,14 +49,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"numero\":\"16\",\r\n    \"indice\":\"Imp6\",\r\n    \"descricao\":\"Impressora\",\r\n    \"problema\":\"Não imprime\"\r\n  \r\n}\r\n  \r\n",
+					"raw": "{\r\n    \"numero\":\"160\",\r\n    \"indice\":\"Mntr23\",\r\n    \"descricao\":\"Monitor\",\r\n    \"problema\":\"Imagem vermelha\"\r\n}\r\n  \r\n",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/os/5/equipamento"
+				"url": "http://localhost:8080/api/v1/os/50/equipamento"
 			},
 			"response": []
 		},
@@ -65,7 +65,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/os/12/equipamento/Xerox1"
+				"url": "http://localhost:8080/api/v1/os/140/equipamento/Scan1"
 			},
 			"response": []
 		},
@@ -74,7 +74,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/os/10/equipamento"
+				"url": "http://localhost:8080/api/v1/os/130/equipamento"
 			},
 			"response": []
 		},
