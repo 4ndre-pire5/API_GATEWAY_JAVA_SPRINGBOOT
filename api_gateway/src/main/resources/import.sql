@@ -9,3 +9,4 @@ INSERT INTO equipamento(numero, indice, descricao, problema, os_id) VALUES (130,
 INSERT INTO equipamento(numero, indice, descricao, problema, os_id) VALUES (140, 'Scan1', 'Scanner', 'Nao liga', 3);
 INSERT INTO equipamento(numero, indice, descricao, problema, os_id) VALUES (150, 'LC1', 'Leitor QR-Code', 'Quebrado', 4);
 
+

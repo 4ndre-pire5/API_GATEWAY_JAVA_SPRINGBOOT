@@ -32,6 +32,9 @@ public class Controller {
     // Ordens de servico
     @PostMapping
     public ResponseEntity<OrdemServico> insert(@RequestBody OrdemServico ordemServico) {
+        if((ordemServico.getNumero() == null) || ordemServico.getDescricao() == ""){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        } 
         OrdemServico novaOS = osRepo.save(ordemServico);
         return new ResponseEntity<>(novaOS, HttpStatus.CREATED);
     }
@@ -39,6 +42,9 @@ public class Controller {
     @GetMapping
     public ResponseEntity<List<OrdemServico>> findAll() {
         List<OrdemServico> list = osRepo.findAll();
+        if(list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -82,13 +88,18 @@ public class Controller {
     @GetMapping("/{numero}/equipamento")
     public ResponseEntity<List<Equipamento>> findByNumero(@PathVariable(value = "numero") Long numero){     
         List<Equipamento> list = equipRepo.findByNumero(numero);
+        if(list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
      
-
     @GetMapping("/equipamento")
     public ResponseEntity<List<Equipamento>> findAllByDescricao(@RequestParam(value = "descricao") String descricao){
         List<Equipamento> list = equipRepo.findAllByDescricao(descricao);
+        if(list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
