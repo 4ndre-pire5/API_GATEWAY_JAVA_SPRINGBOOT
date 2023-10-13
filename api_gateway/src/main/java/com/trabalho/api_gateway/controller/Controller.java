@@ -76,8 +76,7 @@ public class Controller {
         Optional<Equipamento> equipResult = equipRepo.findEquipByNumero(numero);
         if(equipResult.isPresent()){
             List<Equipamento> Result = equipRepo.findByNumeroAndIndice(numero, indice);
-            return new ResponseEntity<>(Result, HttpStatus.OK);
-                    
+            return new ResponseEntity<>(Result, HttpStatus.OK);           
         }
         else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

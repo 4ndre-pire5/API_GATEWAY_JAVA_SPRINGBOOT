@@ -35,8 +35,8 @@ docker run -d --name kong-gateway \
     -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
     -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
     -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-    -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
-    -e "KONG_PORTAL_GUI_HOST=localhost:8003" \
+    -e "KONG_ADMIN_GUI_URL=http://192.168.0.17:8002" \
+    -e "KONG_PORTAL_GUI_HOST=192.168.0.17:8003" \
     -e "KONG_PORTAL=on" \
     -e KONG_LICENSE_DATA \
     -p 8000:8000 \
@@ -50,7 +50,7 @@ docker run -d --name kong-gateway \
     kong/kong-gateway:3.3.0.0
 
 #   enable Kong Portal
-curl -i -X PATCH http://localhost:8001/workspaces/default --data "config.portal=true"
+curl -i -X PATCH http://192.168.0.17:8001/workspaces/default --data "config.portal=true"
 
 #   Kong dbless
 #docker run -d --name kong-dbless -v "$(pwd)/conf:/kong/declarative/" \

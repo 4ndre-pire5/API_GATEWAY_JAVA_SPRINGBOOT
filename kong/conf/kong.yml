@@ -4,7 +4,7 @@ _transform: true
 services:
   - name: OrdemServico
     protocol: http
-    host: localhost
+    host: 192.168.0.17
     port: 8080
     path: /api/v1/os
     routes:
